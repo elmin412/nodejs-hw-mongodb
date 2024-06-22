@@ -54,12 +54,12 @@ app.get('/contacts', async(req, res) => {
     if (error.message.includes('Cast to ObjectId failed')) {
       error.status = 404;
     }
-    const { status = 500 } = error;
-    res.status(status).json({ 
-      message: error.message 
-    });
+    next(error);
   }}
 );
+
+
+  
 
   app.use('*', notFoundHandler);
   
