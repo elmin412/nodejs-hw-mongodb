@@ -36,7 +36,7 @@ app.get('/contacts', async(req, res) => {
   });
 
 // получения одного контакта по id
-  app.get("/contacts/:contactId", async(req, res) => {
+  app.get("/contacts/:contactId", async(req, res, next) => {
   try {
     const {contactId} = req.params;
     const data = await getContactById(contactId);
@@ -51,10 +51,13 @@ app.get('/contacts', async(req, res) => {
       data
     });
   } catch (error) {
-    res.status(500).json({
-        message: ' Wrong',
-        
-      })
+    if (error.message.includes('Cast to ObjectId failed')) {
+      error.status = 404;
+    }
+    const { status = 500 } = error;
+    res.status(status).json({ 
+      message: error.message 
+    });
   }}
 );
 
