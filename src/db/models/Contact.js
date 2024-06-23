@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose"
+import { Schema, model, version } from "mongoose"
 
 
 
@@ -28,12 +28,13 @@ const contactShema = new Schema ({
     contactType: {
         type: String,
         enum: ["work", "home", "personal"], 
-        required: true,
+        required: false,
         default: "personal"
     }, 
 },
     {
-        timestamps: true
+        timestamps: true,
+        versionKey: false
     },
 )
 
