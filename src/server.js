@@ -2,10 +2,12 @@
 import cors from "cors";
 import express from 'express';
 import pino from "pino-http"
+import cookieParser from "cookie-parser";
 import env from "./utils/env.js";
 import { errorHandler } from "./middlewares/errorHandler.js";
 import { notFoundHandler } from "./middlewares/notFoundHandler.js";
 import contactsRouter from "./routers/contacts.js";
+import authRouter from "./routers/auth.js";
 
 const port = Number(env("PORT", 3000));
 
@@ -23,7 +25,9 @@ const logger = pino({
 app.use(logger);
 app.use(cors());
 app.use(express.json());
+app.use(cookieParser());
 
+app.use("/auth", authRouter);
 // получения всех контактов
 app.use("/contacts", contactsRouter);
 

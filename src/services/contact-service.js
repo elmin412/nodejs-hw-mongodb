@@ -6,6 +6,10 @@ import calculatePaginationData  from '../utils/calculatePaginationData.js';
 export const getContacts = async ({filter, page, perPage, sortBy = contactFieldList[0], sortOrder = sortOrderList[0]}) => {
     const skip = (page - 1) * perPage;
     const databaseQuery = Contact.find();
+
+    if(filter.userId) {
+        databaseQuery.where('userId').equals(filter.userId);
+    }
     if(filter.type) {
         databaseQuery.where('contactType').equals(filter.type);
     }
@@ -31,7 +35,8 @@ export const getContacts = async ({filter, page, perPage, sortBy = contactFieldL
         
     }
 }
-export const getContactById = contactId => Contact.findById(contactId);
+export const getContact = filter => Contact.findOne(filter);
+
 
 export const addContact = data => Contact.create(data);
 
