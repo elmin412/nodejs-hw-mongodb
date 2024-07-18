@@ -11,8 +11,6 @@ export const getContacts = async ({
     sortOrder = sortOrderList[0]
     }) => {
     const skip = (page - 1) * perPage;
-
-    
     const databaseQuery = Contact.find();
 
     if(filter.userId) {
@@ -31,8 +29,8 @@ export const getContacts = async ({
     .sort({[sortBy]: sortOrder});
     const totalItems = await Contact.find({userId: filter.userId}).countDocuments();
     const {totalPages, hasNextPage, hasPrevPage} = calculatePaginationData({total: totalItems, perPage, page});
-
     console.log(totalItems)
+
     return {
         data,
         page,
@@ -45,7 +43,6 @@ export const getContacts = async ({
     }
 }
 export const getContact = filter => Contact.findOne(filter);
-
 
 export const addContact = data => Contact.create(data);
 

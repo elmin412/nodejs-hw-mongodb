@@ -31,6 +31,10 @@ const contactShema = new Schema ({
         required: false,
         default: "personal"
     },
+
+    avatar: {
+        type: String,
+    },
     userId: {
         type: Schema.Types.ObjectId,
         ref: "user",

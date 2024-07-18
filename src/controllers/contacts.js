@@ -4,7 +4,8 @@ import  parsePaginationParams  from "../utils/parsePaginationParams.js";
 import { contactFieldList } from "../constants/constants.js";
 import parseSortParams from "../utils/parseSortParams.js";
 import parseContactFilterParams from "../utils/parseContactFilterParams.js";
-
+import saveFileToPublicDir from '../utils/saveFileToPublicDir.js'
+import saveFileToCloudinary from "../utils/saveFileToCloudinary.js";
 
 export const getAllcontactsController = async(req, res, ) => {
   const {_id: userId} = req.user ;
@@ -47,7 +48,18 @@ export const getContactsByIdController = async(req, res) => {
 export const addContactController = async(req, res) => {
 
   const {_id: userId} = req.user;
-  const data = await addContact({...req.body, userId});
+  let avatar = "";
+
+  // зберігання на диску
+  // if(req.file) {
+  //   avatar = await saveFileToPublicDir(req. file, 'avatar');
+  // }
+  // зберігання на хмарному сховищі
+  if(req.file) {
+    avatar = await saveFileToCloudinary(req. file, 'avatar');
+  }
+  
+  const data = await addContact({...req.body, userId, avatar});
 
   res.status(201).json({
     status: 201,
@@ -62,7 +74,12 @@ export const patchContactController = async(req, res) => {
  
   const {id} = req.params;
   const {_id: userId} = req.user;
-  const result = await upserContact({id, userId}, req.body)
+  let avatar = ""
+  if(req.file) {
+    avatar = await saveFileToCloudinary(req. file, 'avatar');
+  }
+  
+  const result = await upserContact({id, userId}, req.body, avatar)
 
   if(!result) {
     throw createHttpError(404, `Сontact with id=${id} not found!`);
