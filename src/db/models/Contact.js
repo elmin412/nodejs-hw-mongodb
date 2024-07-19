@@ -32,7 +32,7 @@ const contactShema = new Schema ({
         default: "personal"
     },
 
-    avatar: {
+    photo: {
         type: String,
     },
     userId: {

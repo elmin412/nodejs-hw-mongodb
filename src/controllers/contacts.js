@@ -48,18 +48,18 @@ export const getContactsByIdController = async(req, res) => {
 export const addContactController = async(req, res) => {
 
   const {_id: userId} = req.user;
-  let avatar = "";
+  let photo = "";
 
   // зберігання на диску
   // if(req.file) {
-  //   avatar = await saveFileToPublicDir(req. file, 'avatar');
+  //   photo = await saveFileToPublicDir(req. file, 'photo');
   // }
   // зберігання на хмарному сховищі
   if(req.file) {
-    avatar = await saveFileToCloudinary(req. file, 'avatar');
+    photo = await saveFileToCloudinary(req. file, 'photo');
   }
   
-  const data = await addContact({...req.body, userId, avatar});
+  const data = await addContact({...req.body, userId, photo});
 
   res.status(201).json({
     status: 201,
@@ -74,12 +74,12 @@ export const patchContactController = async(req, res) => {
  
   const {id} = req.params;
   const {_id: userId} = req.user;
-  let avatar = ""
+  let photo = ""
   if(req.file) {
-    avatar = await saveFileToCloudinary(req. file, 'avatar');
+    photo = await saveFileToCloudinary(req. file, 'photo');
   }
   
-  const result = await upserContact({id, userId}, req.body, avatar)
+  const result = await upserContact({id, userId}, req.body, photo)
 
   if(!result) {
     throw createHttpError(404, `Сontact with id=${id} not found!`);
