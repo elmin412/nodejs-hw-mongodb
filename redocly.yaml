@@ -1,3 +1,7 @@
+<<<<<<< Updated upstream
+=======
+# See https://redocly.com/docs/cli/configuration/ for more information.
+>>>>>>> Stashed changes
 apis:
   sample@v1:
     root: docs/openapi.yaml

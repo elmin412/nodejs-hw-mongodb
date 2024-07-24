@@ -1,6 +1,7 @@
 openapi: 3.1.0
 info:
   version: 1.0.0
+<<<<<<< Updated upstream
   title: Contacts app
   license:
     name: Apache 2.0
@@ -27,8 +28,30 @@ paths:
       $ref: '../swagger/paths/contacts/{id}/patch.yaml'
     delete:
       $ref: '../swagger/paths/contacts/{id}/delete.yaml'
+=======
+  title: Contacts
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  description:
+    This is a documentation of my contacts app
+tags:
+  - name: Contacts
+  description: Operations about contacts
+  - name: Auth
+  description: Auth operations
+servers:
+  - url: http://localhost:3000
+  - url: #посилання на задеплоєний сайт
+paths:
+  # тут будуть посилання на ендпоінти
+>>>>>>> Stashed changes
 components:
   securitySchemes:
     bearerAuth:
       type: http
+<<<<<<< Updated upstream
       scheme: bearer
+=======
+      scheme: bearer
+>>>>>>> Stashed changes
