@@ -8,7 +8,7 @@ import { errorHandler } from "./middlewares/errorHandler.js";
 import { notFoundHandler } from "./middlewares/notFoundHandler.js";
 import contactsRouter from "./routers/contacts.js";
 import authRouter from "./routers/auth.js";
-
+import swaggerDocs from "../src/middlewares/swaggerDocs.js"
 const port = Number(env("PORT", 3000));
 
 
@@ -26,7 +26,9 @@ app.use(logger);
 app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
-
+// получения документации
+app.use('/api-docs', swaggerDocs());
+// получения доступа (регистрация, логин)
 app.use("/auth", authRouter);
 // получения всех контактов
 app.use("/contacts", contactsRouter);
