@@ -17,30 +17,30 @@ requestBody:
           - contactType
           - userId
         properties:
-          name: null
-          description: Contact's name
-          type: string
-          example: John Doe
-        phoneNumber:
-          description: Contact's phone number
-          type: number
-          example: '+380000000001'
-        email:
-          description: Contact's email
-          type: string
-          example: work@mail.com
-        isFavourite:
-          description: Favorite contact's
-          type: boolean
-          example: true
-        contactType:
-          description: 'Type of number phone'
-          type: string
-          enum: ["work", "home", "personal"]
-        photo:
-          description: Link to contact's photo
-          type: string
-          example: 'https://res.cloudinary.com/uqwgdu/image/upload/image.png'
+          name: 
+            description: Contact's name
+            type: string
+            example: 'John Doe'
+          phoneNumber:
+            description: Contact's phone number
+            type: number
+            example: '+380000000001'
+          email:
+            description: Contact's email
+            type: string
+            example: work@mail.com
+          isFavourite:
+            description: Favorite contact's
+            type: boolean
+            example: true
+          contactType:
+            description: "Contact's type"
+            type: string
+            enum: ['work', 'home', 'personal']
+          photo:
+            description: Link to contact's photo
+            type: string
+            example: 'https://res.cloudinary.com/uqwgdu/image/upload/image.png'
 responses:
   '200':
     description: Creates a contact

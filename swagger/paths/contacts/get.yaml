@@ -26,7 +26,7 @@ parameters:
     name: contactType
     schema: 
       type: string
-      enum: ['work', 'personal', 'home']
+      enum: ["work", 'personal', 'home']
       example: "work"
 responses:
   '200':
