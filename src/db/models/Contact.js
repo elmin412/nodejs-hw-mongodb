@@ -1,5 +1,5 @@
-import { Schema, model } from "mongoose"
-
+import { Schema, model, version } from "mongoose"
+import { typeContact } from "../../constants/constants.js";
 
 
 
@@ -27,13 +27,19 @@ const contactShema = new Schema ({
     
     contactType: {
         type: String,
-        enum: ["work", "home", "personal"], 
-        required: true,
+        enum: typeContact, 
+        required: false,
         default: "personal"
-    }, 
+    },
+    userId: {
+        type: Schema.Types.ObjectId,
+        ref: "user",
+        required: true,
+    }
 },
     {
-        timestamps: true
+        timestamps: true,
+        versionKey: false
     },
 )
 

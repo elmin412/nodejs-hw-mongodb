@@ -1,1 +1,0 @@
-mongodb+srv://<username>:<password>@hw2-mongodb.pas7umr.mongodb.net/?retryWrites=true&w=majority&appName=hw2-mongodb
